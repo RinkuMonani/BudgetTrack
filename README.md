@@ -8,4 +8,4 @@ My on-the-go project while learning JS.
 - CSS3
 - Javascript
 
-Checkout `https://rinkumonani.github.io/Budgety/`
+Checkout the app on [Github Pages](https://rinkumonani.github.io/Budgety/)
