@@ -1,6 +1,44 @@
 // BUDGET CONTROLEER
 var budgetController = (function(){
-    // some code
+    
+    var Expense = function(id, desciption, value){
+        this.id = id;
+        this.desciption = desciption;
+        this.value = value;
+    }
+    
+    var Income = function(id, desciption, value){
+        this.id = id;
+        this.desciption = desciption;
+        this.value = value;
+    }
+
+    var data = {
+        allItems:{
+            exp: [],
+            inc: []
+        },
+
+        total:{
+            exp: 0,
+            inc: 0
+        }
+    }
+
+    // return {
+    //     addItem: function(type, desciption, value){
+    //         var newItem;
+    //         var ID = 0;
+
+    //         if(type === 'exp')
+    //             newItem = new Expense(ID, desciption, value);
+    //         else if(type === 'inc')
+    //             newItem = new Income(ID, desciption, value);
+
+    //     }
+    // }
+    
+    
 
 })();
 
