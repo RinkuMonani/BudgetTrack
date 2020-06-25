@@ -61,6 +61,30 @@ var budgetController = (function(){
             return newItem;
         },
 
+        
+        deleteItemFromDS: function(type, id){
+            var targetIndex;
+
+            data.allItems[type].forEach(function(curent, index, array){
+                if(curent.id === id){
+                    data.allItems[type].splice(index, 1);
+                }
+            });
+
+            // var ids, index;
+
+            // var ids = data.allItems[type].map(function(current, index, array){
+            //     return current.id;
+            // });
+
+            // index = ids.indexOf(parseInt(id));
+
+            // if(index > -1){
+            //     data.allItems[type].splice(index, 1);
+            // }
+
+        },
+
         getBudget: function(){
             return{
                 budget: data.budget,
@@ -165,6 +189,12 @@ var UIController = (function(){
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
         },
 
+        deleteItemFromUI: function(selectorID){
+            var parent;
+
+            parent = document.getElementById(selectorID).parentNode.removeChild(document.getElementById(selectorID));
+        },
+
         displayBudget: function(obj){
             
             document.querySelector(DOMStrings.percentageLabel).textContent = obj.percentage;
@@ -267,17 +297,26 @@ var controller = (function(budgetCtrl, UICtrl){
        
     }
 
-    // var ctrlDeleteItem = function(event){
-    //     var itemID, splitItemID, type, id;
+    var ctrlDeleteItem = function(event){
+        var itemID, splitItemID, type, id;
 
-    //     itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
+        itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
 
-    //     if(itemID){
-    //         splitItemID= itemID.split('-');
-    //         type = splitItemID[0];
-    //         id = splitItemID[1];
-    //     }
-    // }
+        if(itemID){
+            splitItemID= itemID.split('-');
+            type = splitItemID[0];
+            id = parseInt(splitItemID[1]);
+        }
+
+        // 1. Delete the item from the DS
+        budgetCtrl.deleteItemFromDS(type, id);
+
+        // 2. Delete the item from the UI
+        UICtrl.deleteItemFromUI(itemID);
+
+        // 3. Update the budget
+        updateBudget();
+    }
 
     return{
         init: function(){ 
