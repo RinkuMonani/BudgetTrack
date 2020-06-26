@@ -205,21 +205,21 @@ var UIController = (function(){
         },
 
         
-        clearFeilds: function(){
-            var feilds, feildsArray;
+        clearfields: function(){
+            var fields, fieldsArray;
             
             // returns a list
-            feilds = document.querySelectorAll(DOMStrings.desciption + ', ' +  DOMStrings.value);
+            fields = document.querySelectorAll(DOMStrings.desciption + ', ' +  DOMStrings.value);
             
             //converting a list to array
-            feildsArray = Array.prototype.slice.call(feilds);
+            fieldsArray = Array.prototype.slice.call(fields);
 
-            feildsArray.forEach(function(current, index, array){
+            fieldsArray.forEach(function(current, index, array){
                 current.value = "";
             });
 
             // setting focus
-            feildsArray[0].focus();
+            fieldsArray[0].focus();
         },
 
 
@@ -254,11 +254,11 @@ var UIController = (function(){
         },
 
         displayPercentages: function(percentages){
-            var feilds;
+            var fields;
 
-            feilds = document.querySelectorAll(DOMStrings.expensePercentageLabel);
+            fields = document.querySelectorAll(DOMStrings.expensePercentageLabel);
             
-            nodeListForEach(feilds, function(current, index){
+            nodeListForEach(fields, function(current, index){
                 if(percentages[index] > 0)
                     current.textContent = percentages[index] + "%";
                 else
@@ -301,15 +301,15 @@ var UIController = (function(){
         },
 
         changeOutline: function(){
-            var feilds;
+            var fields;
             
-            feilds = document.querySelectorAll(
+            fields = document.querySelectorAll(
                 DOMStrings.inputType + ',' +
                 DOMStrings.desciption + ',' +
                 DOMStrings.value
             )
 
-            nodeListForEach(feilds, function(current){
+            nodeListForEach(fields, function(current){
                 current.classList.toggle('red-focus');
             });
 
@@ -367,7 +367,7 @@ var controller = (function(budgetCtrl, UICtrl){
 
         if(inputs.desciption === "" || isNaN(inputs.value) || inputs.value < 1){
         
-            alert("Enter valid value in the feilds");
+            alert("Enter valid value in the fields");
         
         }else{
 
@@ -377,8 +377,8 @@ var controller = (function(budgetCtrl, UICtrl){
             // 3. add new item to UI
             UICtrl.addListItem(newItem, inputs.type);
 
-            // 4. clear the feilds
-            UICtrl.clearFeilds();
+            // 4. clear the fields
+            UICtrl.clearfields();
 
             // 5. Calculate and Update Budget
             updateBudget();
