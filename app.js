@@ -183,14 +183,18 @@ var UIController = (function(){
             intPart = intPart.substr(0, intPart.length - i) + ',' +intPart.substr(intPart.length-i, i);
             console.log(intPart);
         }
-
-        // console.log(intPart);
     
         type === 'exp' ? sign = '-' : sign = '+';
 
         return sign + ' ' + intPart + '.' + decPart;
     }
 
+    var nodeListForEach = function(list, callBack){
+        for(var i=0; i<list.length; ++i){
+            callBack(list[i], i);
+        }
+    }
+    
     return {
         getInput: function(){
             return{
@@ -253,12 +257,6 @@ var UIController = (function(){
             var feilds;
 
             feilds = document.querySelectorAll(DOMStrings.expensePercentageLabel);
-
-            var nodeListForEach = function(list, callBack){
-                for(var i=0; i<list.length; ++i){
-                    callBack(list[i], i);
-                }
-            }
             
             nodeListForEach(feilds, function(current, index){
                 if(percentages[index] > 0)
@@ -302,6 +300,22 @@ var UIController = (function(){
             document.querySelector(DOMStrings.dateLabel).textContent = months[month] +' '+year;
         },
 
+        changeOutline: function(){
+            var feilds;
+            
+            feilds = document.querySelectorAll(
+                DOMStrings.inputType + ',' +
+                DOMStrings.desciption + ',' +
+                DOMStrings.value
+            )
+
+            nodeListForEach(feilds, function(current){
+                current.classList.toggle('red-focus');
+            });
+
+            document.querySelector(DOMStrings.addButton).classList.toggle('red');
+        },
+
         getDOMStrings: function(){
             return DOMStrings;
         }
@@ -328,6 +342,7 @@ var controller = (function(budgetCtrl, UICtrl){
 
         document.querySelector(DOMStrings.container).addEventListener('click', ctrlDeleteItem);
 
+        document.querySelector(DOMStrings.inputType).addEventListener('change', UICtrl.changeOutline);
 
     }
     
