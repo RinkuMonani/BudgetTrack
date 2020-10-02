@@ -11,10 +11,10 @@ My on-the-go project while learning JS.
 ### Let us _gif_ through the app
 
 * Add your expenses and earnings and BudgetTrack displays the figures for you
-![](bt1.gif)
+![](readme-gifs/bt1.gif)
 
 * Remove your entries conveniently from the log
-![](bt2.gif)
+![](readme-gifs/bt2.gif)
 
 
 Checkout the app on [Github Pages](https://rinkumonani.github.io/BudgetTrack/)
